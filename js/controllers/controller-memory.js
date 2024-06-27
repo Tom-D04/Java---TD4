@@ -1,21 +1,23 @@
-import { Card } from "../models/Card.js";
-//import { Memory } from "../models/memory.js";
+import { Memory } from "../models/Memory.js";
 import { Notifier } from "../patterns/notifier.js";
 
 export class ControllerMemory extends Notifier
 {
-    #card;
-    constructor()
-    {
+    #memory;
+    constructor(){
         super();
+        this.#memory = new Memory();
     }
-    get card(){
-        return this.#card;
+    get memory(){
+        return this.#memory;
     }
-    createCard(){
-        let value = Math.floor(Math.random() * 0xF3 + 0x1F90C);
-        value = "0x" + value.toString(16);
-        console.log(value);
-        this.#card = new Card(value);
+    newGame(){
+        this.#memory.newGame(10);
+        this.notify();
+        this.saveGame();
+    }
+
+    saveGame(){
+        localStorage.setItem("memory", JSON.stringify(this.#memory.toData()));
     }
 }

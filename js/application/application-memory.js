@@ -6,12 +6,6 @@ export class ApplicationMemory
     #controllerMemory;
     #viewMemory;
 
-    constructor()
-    {
-        this.#initControllers();
-        this.#initViews();
-        this.#controllerMemory.createCard();
-    }
 
     #initControllers()
     {
@@ -21,6 +15,13 @@ export class ApplicationMemory
     #initViews()
     {
         this.#viewMemory = new ViewMemory(this.#controllerMemory);
+    }
+
+    constructor()
+    {
+        this.#initControllers();
+        this.#initViews();
+        this.#controllerMemory.newGame();
     }
 
 }

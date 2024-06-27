@@ -6,4 +6,10 @@ export class Card {
     get value() {
         return this.#value;
     }
+
+    toData(){
+        return {
+            value: this.#value
+        };
+    }
 }
